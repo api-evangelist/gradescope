@@ -1,0 +1,60 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Gradescope
+providerId: gradescope
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Education
+- EdTech
+- Grading
+- Assessment
+- LTI
+- Rate Limiting
+- Quotas
+description: >-
+  Gradescope does not publish a generally available public REST API, and it
+  does not document public rate limits or quotas for one. Programmatic
+  integration occurs through LTI 1.3 / LTI Advantage service calls (NRPS, AGS,
+  Deep Linking), whose throughput is governed by the connected LMS and the LTI
+  standard rather than by a published Gradescope API rate-limit policy, and
+  through the autograder framework, where throughput is bounded by container
+  grading capacity rather than by HTTP request limits. No specific limit values
+  are reconciled in this artifact.
+notes: >-
+  No public Gradescope API rate limits are documented. LTI service throughput
+  is LMS- and standard-dependent; autograder throughput is bounded by grading
+  container resources and configured timeouts. Verify any operational limits
+  with Gradescope / Turnitin during reconciliation.
+sources:
+- https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ
+- https://gradescope-autograders.readthedocs.io/en/latest/specs/
+- https://guides.gradescope.com/hc/en-us/articles/36028522325901-Gradescope-Public-API
+responseCodes:
+  throttled: not documented
+limits:
+- name: Public API Rate Limit
+  scope: account
+  metric: requests
+  limit: not documented (no generally available public REST API)
+  notes: Gradescope does not publish a public REST API or its rate limits.
+- name: LTI Service Calls (NRPS / AGS / Deep Linking)
+  scope: deployment
+  metric: requests
+  limit: governed by LMS and LTI 1.3 standard
+  notes: Throughput for roster sync and grade passback is mediated by the connected LMS, not a published Gradescope limit.
+- name: Autograder Execution
+  scope: assignment
+  metric: jobs
+  limit: bounded by grading container resources and timeout
+  notes: Autograder throughput is constrained by container CPU/memory and configured run timeouts rather than HTTP request limits.
+policies:
+- name: No Published API Quotas
+  description: Gradescope does not document public API quotas because no generally available public REST API is offered.
+- name: Backoff Strategy
+  description: For LTI integrations, clients should follow the connected LMS guidance and standard exponential backoff with jitter on transient errors.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

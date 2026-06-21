@@ -1,0 +1,30 @@
+{
+  "info": {
+    "name": "Gradescope API",
+    "description": "Gradescope, a Turnitin company, does not publish a generally available public REST API. This collection contains no callable requests because no first-party REST endpoints are documented. Programmatic integration is delivered through LTI 1.3 / LTI Advantage (roster sync via NRPS, grade passback via AGS, Deep Linking) and the Docker-based autograder framework (results.json contract, gradescope-utils). A first-party public API for courses, assignments, submissions, and grades is a documented feature request but is not yet generally available.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Integration Surfaces (No Public REST API)",
+      "description": "Gradescope has no documented first-party public REST API. The folders below describe the real, documented integration surfaces instead of fabricating HTTP requests.",
+      "item": [
+        {
+          "name": "LTI 1.3 / LTI Advantage (primary supported integration)",
+          "description": "Gradescope implements 1EdTech LTI 1.3 with LTI Advantage services: Names and Role Provisioning Services (NRPS) for roster sync, Assignment and Grade Services (AGS) for gradebook columns and grade passback, and Deep Linking for assignment creation from an LMS (Canvas, Blackboard, Brightspace/D2L, Moodle, Sakai). Service endpoints belong to the LTI standard and the connected LMS deployment, not a fixed Gradescope REST surface. Reference: https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ",
+          "item": []
+        },
+        {
+          "name": "Autograder Framework (code assignments)",
+          "description": "Code assignments are graded by a Docker container that reads the student submission and writes /autograder/results/results.json with scores and test output, commonly built with the gradescope-utils Python package. This is a file-based contract executed in the grading container, not an HTTP REST API. Reference: https://gradescope-autograders.readthedocs.io/en/latest/specs/",
+          "item": []
+        },
+        {
+          "name": "Public REST API (feature request, not generally available)",
+          "description": "A public API for accessing, downloading, and uploading grades and submissions programmatically is documented as a feature request, not a shipped product. No base URL, authentication, or endpoints are published. Reference: https://guides.gradescope.com/hc/en-us/articles/36028522325901-Gradescope-Public-API",
+          "item": []
+        }
+      ]
+    }
+  ]
+}

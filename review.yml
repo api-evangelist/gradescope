@@ -1,0 +1,97 @@
+aid: gradescope
+name: Gradescope
+review:
+  question: Does Gradescope expose a documented, generally available public REST API for courses, assignments, submissions, and grades?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  ownershipNote: |
+    Gradescope was acquired by Turnitin in 2018 and is operated as "Gradescope
+    by Turnitin." Partner / LMS-tool integration inquiries are directed to
+    Turnitin (partnersupport@turnitin.com), and pricing is institutional and
+    sales-led with no published list rates.
+findings:
+  summary: |
+    Gradescope does not publish a generally available first-party public REST
+    API. A "Gradescope Public API" for accessing, downloading, and uploading
+    grades and submissions programmatically appears in the official guides as a
+    feature request / roadmap item, not a shipped, documented product. Because
+    no first-party REST endpoints are publicly documented, the OpenAPI artifact
+    for this provider declares no paths rather than fabricating endpoints.
+
+    Real, documented programmatic integration is delivered through two surfaces:
+    (1) LTI 1.3 / LTI Advantage - the primary supported integration - covering
+    roster sync (Names and Role Provisioning Services), grade passback and
+    gradebook column management (Assignment and Grade Services), and Deep
+    Linking, across Canvas, Blackboard, Brightspace/D2L, Moodle, and Sakai; and
+    (2) the Gradescope Autograder framework - a Docker-based, file-contract
+    mechanism for code assignments that emits results.json, commonly built with
+    the open-source gradescope-utils Python package. Neither is a
+    Gradescope-hosted REST API the public can call directly with an API key.
+
+    Multiple third-party community libraries reverse-engineer Gradescope's
+    private web endpoints to script logins, course/roster reads, and
+    submissions. These are unofficial, undocumented, unsupported, and subject to
+    break without notice; they are not treated as a stable API surface here.
+  transports:
+    - protocol: LTI 1.3 / LTI Advantage
+      scheme: https
+      documented: true
+      note: 1EdTech standard integration - NRPS (roster), AGS (grades), Deep Linking. Endpoints belong to the standard and the connected LMS deployment, not a fixed Gradescope REST surface.
+    - protocol: Autograder Framework
+      scheme: container
+      documented: true
+      note: Docker container reads a student submission and writes /autograder/results/results.json. File-based contract, not HTTP REST.
+    - protocol: Public REST API
+      scheme: https
+      documented: false
+      note: Listed as a feature request in the Gradescope Public API guide; not generally available as of the review date.
+    - protocol: Private Web Endpoints (unofficial)
+      scheme: https
+      documented: false
+      note: Used by third-party reverse-engineered libraries; undocumented, unsupported, subject to change. Not a stable API.
+  ltiAdvantageServices:
+    - name: Names and Role Provisioning Services (NRPS)
+      purpose: Course roster sync and role mapping between the LMS and Gradescope.
+    - name: Assignment and Grade Services (AGS)
+      purpose: Gradebook column creation and grade passback from Gradescope to the LMS.
+    - name: Deep Linking
+      purpose: Create a Gradescope assignment from within an LMS course in fewer steps.
+  supportedLMS:
+    - Canvas
+    - Blackboard
+    - Brightspace (D2L)
+    - Moodle
+    - Sakai
+sources:
+  - url: https://guides.gradescope.com/hc/en-us/articles/36028522325901-Gradescope-Public-API
+    type: Documentation
+    note: Gradescope Public API guide article describes a public API for grades/submissions as a feature request, not a generally available product.
+  - url: https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ
+    type: Documentation
+    note: LTI 1.3 and Advantage FAQ - confirms NRPS (roster), AGS (grade passback / column management), and Deep Linking.
+  - url: https://gradescope-autograders.readthedocs.io/en/latest/specs/
+    type: Documentation
+    note: Autograder specification - Docker container contract and results.json output schema.
+  - url: https://github.com/gradescope
+    type: GitHubOrganization
+    note: Official, domain-verified GitHub org; hosts gradescope-utils and autograder samples (autograder tooling, not a REST API).
+  - url: https://www.turnitin.com/products/gradescope
+    type: Website
+    note: Confirms Gradescope is a Turnitin product; institutional, sales-led positioning.
+actions:
+  openapiPath: openapi/gradescope-openapi.yml
+  openapiPathsEmpty: true
+  apisYmlUpdated: true
+  reason: |
+    No generally available public REST API exists, so the OpenAPI document
+    declares paths: {} with an accurate description rather than inventing
+    endpoints. The apis.yml models the honest surface: LTI integration as the
+    primary supported path, the autograder framework for assignments and
+    submissions, and Courses / Grades documented as LTI-mediated with a public
+    REST API noted as a feature request. Turnitin ownership and institutional,
+    sales-led pricing (reconciled false) are recorded across plans, rate-limits,
+    and finops artifacts.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

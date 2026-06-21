@@ -1,0 +1,84 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Gradescope
+providerId: gradescope
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Education
+- EdTech
+- Grading
+- Assessment
+- LTI
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Gradescope spend. Gradescope, a Turnitin company, is not a
+  usage-metered API product; it is a SaaS assessment platform sold through
+  institutional, sales-led agreements with custom per-institution pricing. There
+  is no generally available public REST API and therefore no per-call, per-token,
+  or per-request billing meter to allocate. Cost management is contract- and
+  seat- / institution-oriented rather than consumption-oriented, so the meters
+  below are framed around the institutional license rather than API usage.
+notes: >-
+  No usage-based API billing exists. Pricing is a custom institutional contract
+  (reconciled false). Treat cost allocation as license/seat allocation across
+  departments rather than API consumption. Verify contract structure with
+  Gradescope / Turnitin during reconciliation.
+sources:
+- https://www.gradescope.com
+- https://www.turnitin.com/products/gradescope
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Turnitin
+serviceCategory: Education and Assessment
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+focusColumns:
+  ServiceName: Gradescope
+  ServiceCategory: Education and Assessment
+  ProviderName: Gradescope
+  PublisherName: Turnitin
+  InvoiceIssuerName: Turnitin
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: institutional_license
+  description: Annual institutional / departmental license fee, custom-quoted per institution.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - institution
+  - department
+- name: covered_seats
+  description: Instructors and students covered under the institutional agreement, where applicable to the contract structure.
+  unit: seats
+  aggregation: sum
+  dimensions:
+  - institution
+  - role
+principles:
+- name: Visibility
+  description: Track the institutional contract value and renewal terms centrally; there is no per-call usage export because no public API is metered.
+- name: Allocation
+  description: Allocate the institutional license cost across departments / courses by seat or usage share for internal chargeback.
+- name: Optimization
+  description: Right-size the agreement to active instructors and courses; consolidate LMS integration via LTI 1.3 to avoid duplicate tooling.
+- name: Accountability
+  description: Assign a license owner per institution; review utilization and renewal annually against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

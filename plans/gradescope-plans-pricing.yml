@@ -1,0 +1,85 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Gradescope
+providerId: gradescope
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Education
+- EdTech
+- Grading
+- Assessment
+- LTI
+- Plans
+description: >-
+  Gradescope, a Turnitin company, does not publish list pricing. Access is
+  sales-led and quoted at the institution level. A free Basic / individual tier
+  exists for limited instructor use, while the capabilities most relevant to
+  programmatic integration - LMS / LTI 1.3 integration with roster and grade
+  sync, and programming (code) autograding - are part of the
+  Institutional / Enterprise offering, which is custom-quoted per university.
+  No usage-based API pricing exists because there is no generally available
+  public REST API to meter. All figures below are unconfirmed and must be
+  verified with Gradescope / Turnitin sales during reconciliation.
+notes: >-
+  Pricing is institutional and sales-led; Turnitin does not publish Gradescope
+  list prices. Reconciled is false. Verify tier inclusions and quotes directly
+  with Gradescope / Turnitin.
+sources:
+- https://www.gradescope.com
+- https://www.turnitin.com/products/gradescope
+- https://guides.gradescope.com/hc/en-us
+plans:
+- id: gradescope-basic
+  name: Basic / Individual
+  type: free
+  description: >-
+    Free individual instructor tier for getting started. Supports core manual
+    and online grading workflows for a limited set of assignment types. Does not
+    include programming (code) autograding or full LMS / LTI integration, which
+    require an institutional agreement.
+  entries:
+  - label: Individual Instructor Use
+    name: basic
+    type: flat
+    metric: account
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (feature-limited)
+    userMultiplied: false
+  elements:
+  - name: Manual Grading
+  - name: Online Assignments
+  - name: Fixed-Template Exams
+- id: gradescope-institutional
+  name: Institutional / Enterprise
+  type: enterprise
+  description: >-
+    Custom-quoted, sales-led agreement at the department or institution level.
+    Adds LMS / LTI 1.3 integration (roster sync via NRPS, grade passback via
+    AGS, Deep Linking), programming (code) autograding, and administrative and
+    support features. Pricing is negotiated per institution and not published.
+  entries:
+  - label: Institutional Agreement
+    name: institutional
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (custom quote)
+    userMultiplied: false
+  elements:
+  - name: LTI 1.3 / LTI Advantage Integration
+  - name: Roster Sync (NRPS)
+  - name: Grade Passback (AGS)
+  - name: Programming Autograder
+  - name: Administrative Controls
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
