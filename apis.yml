@@ -116,6 +116,8 @@ apis:
     public REST API. Programmatic export/import of grades outside of LTI is a
     documented feature request that is not yet generally available.
 common:
+- type: DomainSecurity
+  url: security/gradescope-domain-security.yml
 - type: GitHubOrganization
   url: https://github.com/gradescope
 - type: LinkedIn
