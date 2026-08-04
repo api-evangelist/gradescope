@@ -1,0 +1,14 @@
+{
+  "provider": "gradescope",
+  "sources": [
+    "gradescope-openapi.yml"
+  ],
+  "outputs": [],
+  "archived": [
+    "archived gradescope-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
