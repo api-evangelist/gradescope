@@ -10,6 +10,17 @@ description: Gradescope, a Turnitin company, is an assessment and grading platfo
   autograder framework for code assignments. A first-party public API for
   courses, assignments, submissions, and grades is a published feature request
   but is not yet generally available.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: enterprise
   onboarding: unknown
