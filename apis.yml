@@ -53,7 +53,6 @@ apis:
   - Grade Passback
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ
-  baseURL: https://www.gradescope.com
   properties:
   - url: https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ
     type: Documentation
@@ -72,7 +71,6 @@ apis:
   - Roster
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://guides.gradescope.com/hc/en-us/articles/36028522325901-Gradescope-Public-API
-  baseURL: https://www.gradescope.com
   properties:
   - url: https://guides.gradescope.com/hc/en-us/articles/36028522325901-Gradescope-Public-API
     type: Documentation
@@ -90,7 +88,6 @@ apis:
   - Autograder
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://gradescope-autograders.readthedocs.io/en/latest/specs/
-  baseURL: https://www.gradescope.com
   properties:
   - url: https://gradescope-autograders.readthedocs.io/en/latest/specs/
     type: Documentation
@@ -109,7 +106,6 @@ apis:
   - Autograder
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://gradescope-autograders.readthedocs.io/en/latest/specs/
-  baseURL: https://www.gradescope.com
   properties:
   - url: https://gradescope-autograders.readthedocs.io/en/latest/specs/
     type: Documentation
@@ -128,7 +124,6 @@ apis:
   - Grade Passback
   image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ
-  baseURL: https://www.gradescope.com
   properties:
   - url: https://guides.gradescope.com/hc/en-us/articles/21746234461197-LTI-1-3-and-Advantage-FAQ
     type: Documentation
